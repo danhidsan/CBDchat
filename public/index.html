@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CBD chat</title>
+
+    <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container-fluid">
+
+        <ul class="list-group" id="messages"></ul>
+      
+      </div>
+      <div style="position: fixed; right:20px;left:20px;bottom:20px;">
+          <form id="form">
+              <input type="text" id="user" placeholder="Usuario" autocomplete="off" class="form-control"/>
+              <input type="text" id="message" placeholder="Mensaje" autocomplete="off" class="form-control"/>
+              <input id="send" type="button" value="Enviar"></input>
+          </form>          
+      </div>
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script src="//momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+  </body>
+</html>
