@@ -24,21 +24,27 @@ io.on('connection', function(socket){
         io.sockets.connected[socket.id].emit('confirm_conexion', "Cliente conectado con id: " + socket.id);
     }
 
+
+
     // evento que se mantiene a la espera de un nuevo mensaje
     socket.on('new_message', (data) => {
 
         // conexion a rethinkdb que almacena el nuevo mensaje obtenido a través del evento
         fs.readFile('./cacert', function(err, caCert) {
             r.connect({
-                host: 'aws-eu-west-1-portal.8.dblayer.com',
-                port: '18890',
-                password: 'a0b11a553850b356d2ada93a493f5781',
-                db: 'chat',
-                ssl: {
-                    ca: caCert
-                } || {
-                    db: 'chat'
-                }
+                db: 'chat'
+            } 
+            
+            || 
+            
+            {
+            host: 'aws-eu-west-1-portal.8.dblayer.com',
+            port: '18890',
+            password: 'a0b11a553850b356d2ada93a493f5781',
+            db: 'chat',
+            ssl: {
+                ca: caCert
+            } 
             }, (err, conn) => {
                 if (err) throw err;
                 r.table('messages').insert({ // almacenamos el mensaje
@@ -59,14 +65,21 @@ io.on('connection', function(socket){
 
     // Conexión a rethinkdb que se mantiene a la espera de un nuevo mensaje
     fs.readFile('./cacert', function(err, caCert) {
-            r.connect({
+            r.connect(
+                {
+                    db: 'chat'
+                } 
+                
+                || 
+                
+                {
                 host: 'aws-eu-west-1-portal.8.dblayer.com',
                 port: '18890',
                 password: 'a0b11a553850b356d2ada93a493f5781',
                 db: 'chat',
                 ssl: {
                     ca: caCert
-                }
+                } 
         }, (err, conn) => {
             if (err) throw err;
             r.table('messages').changes().run(conn, (err, cursor) => {
